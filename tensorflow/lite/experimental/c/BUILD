@@ -5,7 +5,7 @@ load(
 )
 
 package(
-    default_visibility = [":experimental"],
+    default_visibility = ["//visibility:public"],
     licenses = ["notice"],  # Apache 2.0
 )
 
@@ -64,7 +64,7 @@ cc_library(
     ],
     copts = tflite_copts(),
     visibility = [
-        ":experimental",
+        "//visibility:public",
     ],
     deps = [
         ":c_api_internal",
@@ -110,6 +110,9 @@ cc_test(
     size = "small",
     srcs = ["c_api_experimental_test.cc"],
     data = ["//tensorflow/lite:testdata/add.bin"],
+    visibility = [
+        "//visibility:public",
+    ],
     deps = [
         ":c_api",
         ":c_api_experimental",
