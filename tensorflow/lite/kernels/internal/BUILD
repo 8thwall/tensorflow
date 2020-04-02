@@ -565,7 +565,10 @@ cc_library(
         "optimized/neon_tensor_utils.h",
         "optimized/neon_tensor_utils_impl.h",
     ],
-    copts = NEON_FLAGS_IF_APPLICABLE + HARD_FP_FLAGS_IF_APPLICABLE,
+    copts = NEON_FLAGS_IF_APPLICABLE + HARD_FP_FLAGS_IF_APPLICABLE + [
+        "-Wno-deprecated-declarations",
+        "-Wno-unused-function",
+    ],
     deps = [
         ":common",
         ":compatibility",

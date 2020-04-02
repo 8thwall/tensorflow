@@ -24,7 +24,10 @@ def tflite_copts():
             "/wd4018",  # -Wno-sign-compare
         ],
         "//conditions:default": [
+            "-Wno-deprecated-declarations",
             "-Wno-sign-compare",
+            "-Wno-unused-const-variable",
+            "-Wno-unused-function",
         ],
     }) + select({
         clean_dep("//tensorflow:optimized"): ["-O3"],
