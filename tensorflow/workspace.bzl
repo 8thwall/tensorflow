@@ -127,6 +127,16 @@ def tf_repositories(path_prefix = "", tf_repo_name = ""):
         print("path_prefix was specified to tf_workspace but is no longer used " +
               "and will be removed in the future.")
 
+    tf_http_archive(
+        name = "XNNPACK",
+        sha256 = "2894f92427a8b1314a3db5ac7087feb9097144f29ed726c885c1a87be3b08968",
+        strip_prefix = "XNNPACK-d6f77a69c28d9c99ae5226e3327ec87e1994e81d",
+        urls = [
+            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/XNNPACK/archive/d6f77a69c28d9c99ae5226e3327ec87e1994e81d.zip",
+            "https://github.com/google/XNNPACK/archive/d6f77a69c28d9c99ae5226e3327ec87e1994e81d.zip",
+        ],
+    )
+
     # Important: If you are upgrading MKL-DNN, then update the version numbers
     # in third_party/mkl_dnn/mkldnn.BUILD. In addition, the new version of
     # MKL-DNN might require upgrading MKL ML libraries also. If they need to be
