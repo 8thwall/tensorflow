@@ -122,8 +122,9 @@ cc_library(
         "//tensorflow/lite/profiling:profiler",
         "//tensorflow/lite/tools/evaluation:utils",
     ] + select({
-        "//tensorflow:android": [
-            "//tensorflow/lite/delegates/gpu:delegate",
+        "//tensorflow:fuchsia": [],
+        "//conditions:default": [
+            ":xnnpack_delegate_provider",
         ],
         "//conditions:default": [],
     }),
