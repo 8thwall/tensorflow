@@ -56,7 +56,8 @@ MACH_SRCS = [
 ]
 
 EMSCRIPTEN_SRCS = [
-    "src/emscripten/init.c",
+    # This doesn't appear to be a real file.
+    # "src/emscripten/init.c",
 ]
 
 PNACL_SRCS = [
@@ -299,14 +300,14 @@ config_setting(
 config_setting(
     name = "emscripten_wasm",
     values = {
-        "cpu": "wasm",
+        "cpu": "js",
     },
 )
 
 config_setting(
     name = "emscripten_wasmsimd",
     values = {
-        "cpu": "wasm",
+        "cpu": "js",
         "features": "wasm_simd",
     },
 )

@@ -144,6 +144,7 @@ def tf_repositories(path_prefix = "", tf_repo_name = ""):
 
     tf_http_archive(
         name = "XNNPACK",
+        build_file = clean_dep("//third_party:xnnpack.BUILD"),
         sha256 = "190e61e50af3497bb46b8d936bd2d2d551a9aeedb02ff66388918408a54e216a",
         strip_prefix = "XNNPACK-b18783570f0643560be641b193367d3906955141",
         urls = [
