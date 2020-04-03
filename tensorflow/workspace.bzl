@@ -969,7 +969,7 @@ def tf_repositories(path_prefix = "", tf_repo_name = ""):
     tf_http_archive(
         name = "com_github_apple_swift_swift_protobuf",
         strip_prefix = "swift-protobuf-1.6.0/",
-        sha256 = "4ccf6e5ea558e8287bf6331f9f6e52b3c321fca5f1d181d03680f415c32a6bba",
+        sha256 = "4d6d2543da84474fe50a543f70ba145d99c4d14a4aac10d7b3c7dc9f0f7ecec3",
         urls = [
             "https://storage.googleapis.com/mirror.tensorflow.org/github.com/apple/swift-protobuf/archive/1.6.0.zip",
             "https://github.com/apple/swift-protobuf/archive/1.6.0.zip",
