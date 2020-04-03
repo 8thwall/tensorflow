@@ -114,7 +114,7 @@ TF_Tensor* TF_NewTensor(TF_DataType dtype, const int64_t* dims, int num_dims,
   if (elem_size > 0 && len < (elem_size * ret.NumElements())) {
     return nullptr;
   }
-  return new TF_Tensor{std::make_unique<tensorflow::TensorInterface>(ret)};
+  return new TF_Tensor{absl::make_unique<tensorflow::TensorInterface>(ret)};
 }
 
 TF_Tensor* TF_TensorMaybeMove(TF_Tensor* t) {
@@ -317,7 +317,7 @@ TF_Tensor* TF_TensorFromTensor(const tensorflow::Tensor& src, Status* status) {
     if (!tensor.CopyFrom(src, src.shape())) {
       return nullptr;
     }
-    return new TF_Tensor{std::make_unique<tensorflow::TensorInterface>(tensor)};
+    return new TF_Tensor{absl::make_unique<tensorflow::TensorInterface>(tensor)};
   }
   // DT_STRING tensors require a copying since TF_Tensor.buffer expects a flatly
   // encoded sequence of strings.

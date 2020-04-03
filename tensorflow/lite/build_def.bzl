@@ -12,6 +12,8 @@ def tflite_copts():
     """Defines compile time flags."""
     copts = [
         "-DFARMHASH_NO_CXX_STRING",
+        "-Wno-deprecated-declarations",
+        "-Wno-unused-function",
     ] + select({
         clean_dep("//tensorflow:android_arm"): [
             "-mfpu=neon",

@@ -111,7 +111,9 @@ config_setting(
 
 config_setting(
     name = "emscripten",
-    values = {"crosstool_top": "//external:android/emscripten"},
+    values = {
+        "cpu": "js",
+    },
     visibility = ["//visibility:public"],
 )
 

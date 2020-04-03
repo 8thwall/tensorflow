@@ -26,6 +26,9 @@ cc_library(
         "nnapi_delegate.h",
         "nnapi_delegate_kernel.h",
     ],
+    copts = [
+        "-Wno-unused-private-field",
+    ],
     deps = [
         "//tensorflow/lite:allocation",
         "//tensorflow/lite:kernel_api",
