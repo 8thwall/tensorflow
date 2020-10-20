@@ -22,7 +22,6 @@ load(
     "def_file_filter_configure",
 )
 load("//third_party/FP16:workspace.bzl", FP16 = "repo")
-load("//third_party/FXdiv:workspace.bzl", FXdiv = "repo")
 load("//third_party/aws:workspace.bzl", aws = "repo")
 load("//third_party/clog:workspace.bzl", clog = "repo")
 load("//third_party/cpuinfo:workspace.bzl", cpuinfo = "repo")
@@ -38,14 +37,12 @@ load("//third_party/opencl_headers:workspace.bzl", opencl_headers = "repo")
 load("//third_party/kissfft:workspace.bzl", kissfft = "repo")
 load("//third_party/pasta:workspace.bzl", pasta = "repo")
 load("//third_party/psimd:workspace.bzl", psimd = "repo")
-load("//third_party/pthreadpool:workspace.bzl", pthreadpool = "repo")
 load("//third_party/sobol_data:workspace.bzl", sobol_data = "repo")
 load("//third_party/vulkan_headers:workspace.bzl", vulkan_headers = "repo")
 
 def initialize_third_party():
     """ Load third party repositories.  See above load() statements. """
     FP16()
-    FXdiv()
     aws()
     clog()
     cpuinfo()
@@ -61,7 +58,6 @@ def initialize_third_party():
     opencl_headers()
     pasta()
     psimd()
-    pthreadpool()
     sobol_data()
     vulkan_headers()
 
@@ -145,11 +141,32 @@ def tf_repositories(path_prefix = "", tf_repo_name = ""):
     tf_http_archive(
         name = "XNNPACK",
         build_file = clean_dep("//third_party:xnnpack.BUILD"),
-        sha256 = "190e61e50af3497bb46b8d936bd2d2d551a9aeedb02ff66388918408a54e216a",
-        strip_prefix = "XNNPACK-b18783570f0643560be641b193367d3906955141",
+        sha256 = "246aa56afc5263f1d41fc4a3437ecd51b56f78e16421818961cf79e39431c1df",
+        strip_prefix = "XNNPACK-b9d07cfa38af15c2abf564c980e00c965857ba21",
         urls = [
-            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/XNNPACK/archive/b18783570f0643560be641b193367d3906955141.zip",
-            "https://github.com/google/XNNPACK/archive/b18783570f0643560be641b193367d3906955141.zip",
+            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/XNNPACK/archive/b9d07cfa38af15c2abf564c980e00c965857ba21.zip",
+            "https://github.com/google/XNNPACK/archive/b9d07cfa38af15c2abf564c980e00c965857ba21.zip",
+        ],
+    )
+
+    tf_http_archive(
+        name = "FXdiv",
+        sha256 = "8224ff187cdfa178b8c54d36eea70520391781eda16d13a418ab5ae53289e1ab",
+        strip_prefix = "FXdiv-561254d968e5679460e6a0a743206410284d9f46",
+        urls = [
+            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/Maratyszcza/FXdiv/archive/561254d968e5679460e6a0a743206410284d9f46.zip",
+            "https://github.com/Maratyszcza/FXdiv/archive/561254d968e5679460e6a0a743206410284d9f46.zip",
+        ],
+    )
+
+    tf_http_archive(
+        name = "pthreadpool",
+        build_file = clean_dep("//third_party:pthreadpool.BUILD"),
+        sha256 = "f894d845cefc091291329712deec85ce7020546f6eaff200b690ae04b6094535",
+        strip_prefix = "pthreadpool-bfa3b9ce6cb71dc8b792e39d24717320a4f92572",
+        urls = [
+            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/Maratyszcza/pthreadpool/archive/bfa3b9ce6cb71dc8b792e39d24717320a4f92572.zip",
+            "https://github.com/Maratyszcza/pthreadpool/archive/bfa3b9ce6cb71dc8b792e39d24717320a4f92572.zip",
         ],
     )
 
@@ -185,12 +202,13 @@ def tf_repositories(path_prefix = "", tf_repo_name = ""):
         build_file = clean_dep("//third_party:com_google_absl.BUILD"),
         # TODO: Remove the patch when https://github.com/abseil/abseil-cpp/issues/326 is resolved
         # and when TensorFlow is build against CUDA 10.2
-        patch_file = clean_dep("//third_party:com_google_absl_fix_mac_and_nvcc_build.patch"),
-        sha256 = "acd93f6baaedc4414ebd08b33bebca7c7a46888916101d8c0b8083573526d070",  # SHARED_ABSL_SHA
-        strip_prefix = "abseil-cpp-43ef2148c0936ebf7cb4be6b19927a9d9d145b8f",
+        # Added wasm config patch for code8
+        patch_file = clean_dep("//third_party:com_google_absl_fix_wasm_config_setting.patch"),
+        sha256 = "ec8ef47335310cc3382bdc0d0cc1097a001e67dc83fcba807845aa5696e7e1e4",  # SHARED_ABSL_SHA
+        strip_prefix = "abseil-cpp-302b250e1d917ede77b5ff00a6fd9f28430f1563",
         urls = [
-            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/abseil/abseil-cpp/archive/43ef2148c0936ebf7cb4be6b19927a9d9d145b8f.tar.gz",
-            "https://github.com/abseil/abseil-cpp/archive/43ef2148c0936ebf7cb4be6b19927a9d9d145b8f.tar.gz",
+            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/abseil/abseil-cpp/archive/302b250e1d917ede77b5ff00a6fd9f28430f1563.tar.gz",
+            "https://github.com/abseil/abseil-cpp/archive/302b250e1d917ede77b5ff00a6fd9f28430f1563.tar.gz",
         ],
     )
 
